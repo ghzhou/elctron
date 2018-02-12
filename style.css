@@ -1,0 +1,47 @@
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: relative;
+  top: -5px;
+  left: 55px;
+}
+
+.team-container {
+	width:425px;
+	display: inline-block;
+	vertical-align: top;
+	margin: 10px;
+	border-radius: 10px;
+	box-shadow: 5px 5px #b9d2bf;
+	color: white;
+}
+
+.member-container {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	vertical-align: top;
+	background-color: darkcyan;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	border-radius: 10px;
+	word-spacing: 100px;
+}
+
+.member-container.lead {
+	background-color: green;
+}
+
+.member-name {
+	color: white;
+	margin-left: 2px;
+	position: relative;
+	top: -20px;
+}
+
+.team-row {
+}

@@ -1,0 +1,16 @@
+{
+  "name": "octane-org-chart",
+  "version": "1.0.0",
+  "description": "Display a chart according to the Team and users inside a workspace.",
+  "main": "main.js",
+  "repository": "https://github.com/ghzhou/elctron.git",
+  "author": "Jack Zhou<zj2975@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "electron": "^1.8.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "webpack": "^3.11.0"
+  }
+}
