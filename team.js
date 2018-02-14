@@ -12,7 +12,7 @@ export class Team extends React.Component {
 
 		const numColumns = 4;
 		const e = React.createElement;
-		const rowsOfUsers = activeUsers.sort((a,b) => {
+		const membersDom = activeUsers.sort((a,b) => {
 
 			if (a.id === this.props.leadId) {
 				return -1;
@@ -22,7 +22,7 @@ export class Team extends React.Component {
 				return a.id - b.id;	
 			}
 
-		}).reduce((result, item, i) => { 
+		})/*.reduce((result, item, i) => { 
 
 			const ix = Math.floor(i/numColumns); 
 			if(!result[ix]) {
@@ -33,15 +33,15 @@ export class Team extends React.Component {
 
 		}, []).map(membersChuck => {
 
-			const cols = membersChuck.map(member => ({
+			const cols = membersChuck*/.map(member => ({
 				key: member.id, 
 				displayName: member.full_name, 
 				id: member.id, 
 				isLead: this.props.leadId===member.id
 			})).map(member => e(User, member, null));
 
-			return e('div', {className: 'team-row'}, cols);
-		});
+		// 	return e('div', {className: 'team-row'}, cols);
+		// });
 
 
 		return e(
@@ -56,7 +56,7 @@ export class Team extends React.Component {
 						this.props.name
 					)
 				),
-				rowsOfUsers
+				membersDom
 			);
 
 	}
