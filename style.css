@@ -16,7 +16,7 @@
 	vertical-align: top;
 	margin: 10px;
 	border-radius: 10px;
-	box-shadow: 5px 5px #b9d2bf;
+	box-shadow: 2px 3px #b9d2bf;
 	color: white;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .member-container.lead {
-	background-color: green;
+	background-color: #026363;
 }
 
 .member-name {
@@ -43,5 +43,12 @@
 	top: -20px;
 }
 
-.team-row {
+.loading {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: green;
 }

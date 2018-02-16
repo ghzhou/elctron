@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Team} from './Team';
 import {Authenticator} from './Authenticator';
 
+const e = React.createElement;
 
 async function loadTeams() {
 	let result = await axios.get(
@@ -16,10 +17,17 @@ async function loadTeams() {
 	.sort((a,b) => a.number_of_members - b.number_of_members);
 }
 
+function showLoading() {
+	ReactDOM.render(
+		e('div', null, e('h1', {className: 'loading'}, 'Loading...')),
+		document.getElementById('root')
+		);
+}
+
 async function main() {
+	showLoading();
 	await new Authenticator(window.config.email, window.config.password).authenticate();
 	let teams = await loadTeams();
-	const e = React.createElement;
 	ReactDOM.render(
 		teams
 		.map(team => ({key: team.id, name: team.name, members: team.members.data, leadId: team.team_lead && team.team_lead.id}))
