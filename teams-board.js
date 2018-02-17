@@ -31,8 +31,9 @@ export class TeamsBoard extends React.Component {
 	getTeamsDom() {
 		let dom =  this.props.teams
 		.filter(team => {
-			return team.activeMembers.find(member =>
-				member.full_name.toLowerCase().indexOf(this.state.filter.toLowerCase()) >= 0);
+			return team.name.toLowerCase().indexOf(this.state.filter) >= 0 ||
+			team.activeMembers.find(member =>
+				member.full_name.toLowerCase().indexOf(this.state.filter) >= 0);
 		})
 		.map(team => ({
 			key: team.id,
@@ -45,6 +46,6 @@ export class TeamsBoard extends React.Component {
 	}
 
 	handleFilterChange(event) {
-		this.setState({filter: event.target.value});
+		this.setState({filter: event.target.value.toLowerCase()});
 	}
 }
