@@ -8,16 +8,22 @@ const e = React.createElement;
 
 async function loadTeams() {
 	let result = await axios.get(
-		`https://octane-center.saas.hpe.com/api/shared_spaces/${window.config.sharedSpaceId}/workspaces/${window.config.workspaceId}/teams?fields=name,team_lead,members,number_of_members`, 
+		`https://octane-center.saas.hpe.com/api/shared_spaces/${window.config.sharedSpaceId}/workspaces/${window.config.workspaceId}/teams?fields=name,team_lead,members`, 
 		{
 			headers: {hpeclienttype: 'HPE_MQM_UI'}
 		});
 	return result.data.data
-	.filter(team => team.number_of_members>0)
-	.filter(team => {
-		return team.members.data.find(member => member.activity_level !== 1);
-	})
-	.sort((a,b) => a.number_of_members - b.number_of_members);
+	.reduce((accumulator, team) => {
+		let activeMembers = team.members.data.filter(member => member.activity_level !== 1);
+		let numberOfMembers = activeMembers.length;
+		if (numberOfMembers > 0) {
+			team.activeMembers = activeMembers;
+			team.numberOfMembers = numberOfMembers;
+			accumulator.push(team);
+		}
+		return accumulator;
+	}, [])
+	.sort((a,b) => a.numberOfMembers - b.numberOfMembers);
 }
 
 function showLoading() {

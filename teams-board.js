@@ -31,13 +31,13 @@ export class TeamsBoard extends React.Component {
 	getTeamsDom() {
 		let dom =  this.props.teams
 		.filter(team => {
-			return team.members.data.find(member => 
+			return team.activeMembers.find(member =>
 				member.full_name.toLowerCase().indexOf(this.state.filter.toLowerCase()) >= 0);
 		})
 		.map(team => ({
 			key: team.id,
 			name: team.name,
-			members: team.members.data,
+			members: team.activeMembers,
 			leadId: team.team_lead && team.team_lead.id
 		}))
 		.map(team => React.createElement(Team, team, null));
