@@ -6,7 +6,7 @@ export class User extends React.Component {
 		const e = React.createElement;
 		return e(
 			'div', 
-			{className: 'member-container' + (this.props.isLead ? ' lead' : '')}, 
+			{className: 'member-container' + (this.props.isLead ? ' team-leader' : '')}, 
 			e(
 				'img', 
 				{
@@ -17,7 +17,7 @@ export class User extends React.Component {
 				'div', 
 				{className: 'member-name'}, 
 				e(MarkableText, {
-					text: this.props.displayName,
+					text: this.props.name,
 					index: this.props.startIndexOfFilter,
 					length: this.props.filterTextLength
 				}))
@@ -25,7 +25,10 @@ export class User extends React.Component {
 	}
 
 	getAvatarUrl(userId) {
-		return `https://octane-center.saas.hpe.com/api/shared_spaces/1001/workspaces/1002/workspace_users/${userId}/avatar?size=small`;
+		return 'https://octane-center.saas.hpe.com/api'+
+		`/shared_spaces/${window.config.sharedSpaceId}`+
+		`/workspaces/${window.config.workspaceId}`+
+		`/workspace_users/${userId}/avatar?size=small`;
 	}
 };
 

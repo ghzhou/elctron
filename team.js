@@ -7,7 +7,6 @@ export class Team extends React.Component {
 	render() {
 		const e = React.createElement;
 		const membersDom = this.props.members.sort((a,b) => {
-
 			if (a.id === this.props.leadId) {
 				return -1;
 			} else if (b.id === this.props.leadId) {
@@ -18,11 +17,11 @@ export class Team extends React.Component {
 
 		}).map(member => ({
 			key: member.id, 
-			displayName: member.full_name,
+			name: member.full_name,
 			startIndexOfFilter: member.startIndexOfFilter,
 			filterTextLength: member.filterTextLength, 
-			id: member.id, 
-			isLead: this.props.leadId===member.id
+			id: member.id,
+			isLead: member.id === this.props.leadId
 		})).map(member => e(User, member, null));
 
 		return e(
