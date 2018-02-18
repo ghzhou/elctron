@@ -1,5 +1,6 @@
 import React from 'react';
 import {User} from './user';
+import {MarkableText} from './markable-text'
 
 export class Team extends React.Component {
 
@@ -17,7 +18,9 @@ export class Team extends React.Component {
 
 		}).map(member => ({
 			key: member.id, 
-			displayName: member.full_name, 
+			displayName: member.full_name,
+			startIndexOfFilter: member.startIndexOfFilter,
+			filterTextLength: member.filterTextLength, 
 			id: member.id, 
 			isLead: this.props.leadId===member.id
 		})).map(member => e(User, member, null));
@@ -31,8 +34,12 @@ export class Team extends React.Component {
 				e(
 					'h5',
 					{className: 'team-header-content m-4'},
-					this.props.name
-					)
+					e(MarkableText,
+					{
+						text: this.props.name,
+						index: this.props.startIndexOfFilter,
+						length: this.props.filterTextLength
+					}))
 				),
 			membersDom
 			);

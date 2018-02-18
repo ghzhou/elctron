@@ -1,4 +1,5 @@
 import React from 'react';
+import {MarkableText} from './markable-text';
 
 export class User extends React.Component {
 	render() {
@@ -15,7 +16,11 @@ export class User extends React.Component {
 			e(
 				'div', 
 				{className: 'member-name'}, 
-				this.props.displayName)
+				e(MarkableText, {
+					text: this.props.displayName,
+					index: this.props.startIndexOfFilter,
+					length: this.props.filterTextLength
+				}))
 			);		
 	}
 
